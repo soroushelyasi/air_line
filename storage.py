@@ -28,12 +28,18 @@ class Storage:
         else:
             return None
 
+    def get_all_airplanes(self):
+        return self.airplanes
+
     def get_city(self, name):
         items = [e for e in self.cities if e.name == name]
         if len(items) > 0:
             return items[0]
         else:
             return None
+
+    def get_all_cities(self):
+        return self.cities
 
     def get_flight(self, flight_number):
         items = [e for e in self.flights if e.flight_number == flight_number]
@@ -42,12 +48,18 @@ class Storage:
         else:
             return None
 
+    def get_all_flights(self):
+        return self.flights
+
     def get_passenger(self, passport_id):
         items = [e for e in self.passengers if e.passport_id == passport_id]
         if len(items) > 0:
             return items[0]
         else:
             return None
+
+    def get_all_passengers(self):
+        return self.passengers
 
     def fetch_airplanes(self):
         storage_address = self.general_storage_address+"airplanes.json"
