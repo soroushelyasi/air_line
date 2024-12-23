@@ -1,10 +1,11 @@
-import sys
 from passenger import Passenger
 from city import City
 from flight import Flight
 from airplane import Airplane
+from storage import Storage
 
 if __name__ == '__main__':
+    stg = Storage()
     # Make a game instance, and run the game.
     print("Welcome to airline!!!")
     while True:
@@ -22,7 +23,8 @@ if __name__ == '__main__':
                 new_passenger = Passenger(
                     input("Passenger name:").upper().strip(),
                     input("Passenger passport ID:").upper().strip())
-                print(new_passenger.name)
+                stg.add_passenger(new_passenger)
+                print(stg.get_passenger(new_passenger.passport_id).name)
             case 2:
                 print("#2: show passengers")
             case 3:
@@ -30,6 +32,8 @@ if __name__ == '__main__':
                     input("Airplane name:").upper().strip(),
                     input("Airplane class:").upper().strip(),
                     int(input("Number of passengers:").strip()))
+                stg.add_airplane(new_airplane)
+                print(stg.get_airplane(new_airplane.name).airplane_class)
             case 4:
                 print("#4: show airplanes")
             case 5:
@@ -37,6 +41,8 @@ if __name__ == '__main__':
                     input("City name:").upper().strip(),
                     int(input("City longitude:").strip()),
                     int(input("City latitude:").strip()))
+                stg.add_city(new_city)
+                print(stg.get_city(new_city.name).longitude)
             case 6:
                 print("#6: show cities")
             case 7:
@@ -48,8 +54,11 @@ if __name__ == '__main__':
                     int(input("Flight number of stops:").strip()),
                     "",
                     int(input("Flight set of passengers:").strip()),
-                    )
+                )
                 for i in range(new_flight.number_of_stops):
-                    new_flight.list_of_city_for_stop_in_order+=input("+#"+i+": Flight stop city  in order:").upper().strip()
+                    new_flight.list_of_city_for_stop_in_order += input(
+                        "+#"+i+": Flight stop city  in order:").upper().strip()
+                stg.add_flight(new_flight)
+                print(stg.get_flight(new_flight.flight_number).name)
             case 8:
                 print("#8: show flights")
