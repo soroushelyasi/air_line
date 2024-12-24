@@ -3,11 +3,15 @@ import os.path
 
 class Storage:
     def __init__(self):
-        self.general_storage_address = "./storage/"
-        self.airplanes = self.fetch_airplanes()
-        self.cities = self.fetch_cities()
-        self.flights = self.fetch_flights()
-        self.passengers = self.fetch_passengers()
+        self.GENERAL_STORAGE_ADDRESS = "./storage/"
+        self.AIRPLANES_ADDRESS = self.GENERAL_STORAGE_ADDRESS+"airplanes.json"
+        self.CITIES_ADDRESS = self.GENERAL_STORAGE_ADDRESS+"cities.json"
+        self.FLIGHTS_ADDRESS = self.GENERAL_STORAGE_ADDRESS+"flights.json"
+        self.PASSENGERS_ADDRESS = self.GENERAL_STORAGE_ADDRESS+"passengers.json"
+        self.airplanes = self.fetch_data(self.AIRPLANES_ADDRESS)
+        self.cities = self.fetch_data(self.CITIES_ADDRESS)
+        self.flights = self.fetch_data(self.FLIGHTS_ADDRESS)
+        self.passengers = self.fetch_data(self.PASSENGERS_ADDRESS)
 
     def add_airplane(self, airplane):
         self.airplanes.append(airplane)
@@ -61,29 +65,7 @@ class Storage:
     def get_all_passengers(self):
         return self.passengers
 
-    def fetch_airplanes(self):
-        storage_address = self.general_storage_address+"airplanes.json"
-        if os.path.isfile(storage_address):
-            return []
-        else:
-            return []
-
-    def fetch_cities(self):
-        storage_address = self.general_storage_address+"cities.json"
-        if os.path.isfile(storage_address):
-            return []
-        else:
-            return []
-
-    def fetch_flights(self):
-        storage_address = self.general_storage_address+"flights.json"
-        if os.path.isfile(storage_address):
-            return []
-        else:
-            return []
-
-    def fetch_passengers(self):
-        storage_address = self.general_storage_address+"passengers.json"
+    def fetch_data(self, storage_address):
         if os.path.isfile(storage_address):
             return []
         else:
